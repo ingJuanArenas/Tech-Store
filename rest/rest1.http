@@ -1,0 +1,26 @@
+//generate claims to api (only all get methods)
+
+GET http://localhost:8080/products
+Accept: application/json
+
+###
+GET http://localhost:8080/products/1
+Accept: application/json
+
+###
+GET http://localhost:8080/products/2
+Accept: application/json
+
+// now , by category
+###
+GET http://localhost:8080/products/category/Electronics
+Accept: application/json
+
+###
+GET http://localhost:8080/products/category/Accesories
+Accept: application/json
+
+//now by search
+###
+GET http://localhost:8080/products/search/phone
+Accept: application/json

@@ -1,0 +1,26 @@
+### Crear producto - Laptop
+POST http://localhost:8080/products
+Content-Type: application/json
+
+{
+  "name": "Laptop Gamer ASUS",
+  "price": 4599.99,
+  "stock": 15,
+  "category": "LAPTOPS",
+  "description": "Laptop gamer con RTX 4060, 16GB RAM y SSD de 1TB",
+  "imageUrl": "https://example.com/images/laptop-asus.jpg"
+}
+
+
+###
+PUT http://localhost:8080/products/1
+Content-Type: application/json
+{
+  "name": "Updated Product Name",
+  "category": "Electronics",
+  "price": 149.99,
+  "description": "Updated description for the product"
+}
+
+###
+DELETE http://localhost:8080/products/2
