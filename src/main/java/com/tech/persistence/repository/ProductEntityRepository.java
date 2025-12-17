@@ -44,6 +44,9 @@ public class ProductEntityRepository implements ProductsRepository {
     @Override
     public List<ProductDTO> searchProducts(String query) {
         List<Product> products = productsCRUD.findByNameContainingIgnoreCase(query);
+        if (products.isEmpty()) {
+            throw new ProductNotFoundException();
+        }
         return productMapper.toDtos(products);
     }
 
