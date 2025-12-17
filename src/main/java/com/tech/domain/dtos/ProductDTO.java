@@ -1,5 +1,6 @@
 package com.tech.domain.dtos;
 
+
 public record ProductDTO(
     String name,
     String description,

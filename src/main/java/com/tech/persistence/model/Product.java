@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -26,7 +28,7 @@ public class Product {
     @Column(nullable = false)
     private int stock;
 
-    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private ProductCategory category;
 
     @Column(length = 2000)
@@ -67,9 +69,16 @@ public class Product {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
-
+    public void setCategory(ProductCategory category) {
+        this.category = category;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
 
     
-
 
 }
