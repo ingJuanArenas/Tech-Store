@@ -8,19 +8,18 @@ GET http://localhost:8080/products/1
 Accept: application/json
 
 ###
-GET http://localhost:8080/products/2
-Accept: application/json
-
-// now , by category
-###
-GET http://localhost:8080/products/category/Electronics
+GET http://localhost:8080/products/9
 Accept: application/json
 
 ###
-GET http://localhost:8080/products/category/Accesories
+GET http://localhost:8080/products/category/smartphones
+Accept: application/json
+
+###
+GET http://localhost:8080/products/category/computers
 Accept: application/json
 
 //now by search
 ###
-GET http://localhost:8080/products/search/phone
+GET http://localhost:8080/products/search/asus
 Accept: application/json

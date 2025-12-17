@@ -11,6 +11,7 @@ import com.tech.domain.repository.ProductsRepository;
 import com.tech.persistence.cruds.ProductsCRUD;
 import com.tech.persistence.mappers.ProductMapper;
 import com.tech.persistence.model.Product;
+import com.tech.persistence.model.ProductCategory;
 
 @Repository
 public class ProductEntityRepository implements ProductsRepository {
@@ -35,8 +36,8 @@ public class ProductEntityRepository implements ProductsRepository {
     }
 
     @Override
-    public List<ProductDTO> getProductsByCategory(String category) {
-       List<Product> products = productsCRUD.findByCategoryIgnoreCase(category);
+    public List<ProductDTO> getProductsByCategory(ProductCategory category) {
+       List<Product> products = productsCRUD.findByCategory(category);
        return productMapper.toDtos(products);
     }
 

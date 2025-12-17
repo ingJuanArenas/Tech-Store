@@ -8,6 +8,7 @@ import com.tech.domain.dtos.ProductDTO;
 import com.tech.domain.dtos.UpdateDTO;
 import com.tech.domain.repository.ProductsRepository;
 import com.tech.persistence.model.Product;
+import com.tech.persistence.model.ProductCategory;
 
 
 @Service
@@ -26,7 +27,8 @@ public class ProductService {
         return productsRepository.getProductById(id);
     }
     public List<ProductDTO> getProductsByCategory(String category) {
-        return productsRepository.getProductsByCategory(category);
+        ProductCategory EnumCategory= ProductCategory.fromString(category);
+        return productsRepository.getProductsByCategory(EnumCategory);
     }
 
     public List<ProductDTO> searchProducts(String query) {
