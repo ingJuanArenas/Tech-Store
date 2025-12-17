@@ -1,0 +1,62 @@
+// get, post, put,delete methods wrong for exceptions handling testing
+//generate claims to api (only all get methods)
+GET http://localhost:8080/products/20
+###
+GET http://localhost:8080/products/category/computer
+###
+GET http://localhost:8080/products/search/NonExistentProduct
+
+
+### post
+POST http://localhost:8080/products
+Content-Type: application/json
+
+{
+  "name": "Laptop Gamer Asus ROG Strix",
+  "price": 5299.99,
+  "stock": 2,
+  "category": "COMPRS",
+  "description": "Laptop para gaming con procesador Intel i7, 16GB RAM y tarjeta gráfica NVIDIA RTX 3060",
+  "imageUrl": "https://example.com/images/laptop-asus.jpg"
+}
+
+
+###
+POST http://localhost:8080/products
+Content-Type: application/json
+
+{
+  "name": "Laptop Gamer Asus ROG Strix",
+  "price": "hi",
+  "stock": 2,
+  "category": "COMPRS",
+  "description": "Laptop para gaming con procesador Intel i7, 16GB RAM y tarjeta gráfica NVIDIA RTX 3060",
+  "imageUrl": "https://example.com/images/laptop-asus.jpg"
+}
+
+### put
+PUT http://localhost:8080/products/20
+Content-Type: application/json
+
+{
+  "price": 4799.99,
+  "stock": 15,
+  "description": "Actualización: Laptop para gaming con procesador Intel i7, 16GB RAM y tarjeta gráfica NVIDIA RTX 3070",
+  "imageUrl": "https://example.com/images/laptop-asus-updated.jpg"
+}
+
+###
+PUT http://localhost:8080/products/1
+Content-Type: application/json
+
+{
+  "price": 4799.99,
+  "stock": "hi",
+  "description": "Actualización: Laptop para gaming con procesador Intel i7, 16GB RAM y tarjeta gráfica NVIDIA RTX 3070",
+  "imageUrl": "https://example.com/images/laptop-asus-updated.jpg"
+}
+
+### delete
+DELETE http://localhost:8080/products/20
+###
+DELETE http://localhost:8080/products/hi
