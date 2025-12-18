@@ -10,6 +10,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "products")
@@ -19,22 +22,26 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @NotBlank
     private String name;
 
-    @Column(nullable = false, precision = 10, scale = 2)
+    @Column(precision = 10, scale = 2)
+    @NotNull
     private BigDecimal price;
 
-    @Column(nullable = false)
+    @Min(value = 1)
     private int stock;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     private ProductCategory category;
 
     @Column(length = 2000)
+    @NotBlank
     private String description;
 
     @Column(name = "image_url")
+    @NotBlank
     private String imageUrl;
     public Long getId() {
         return id;

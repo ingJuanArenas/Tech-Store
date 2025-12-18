@@ -17,6 +17,8 @@ import com.tech.domain.dtos.UpdateDTO;
 import com.tech.domain.service.ProductService;
 import com.tech.persistence.model.Product;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/products")
 public class ProductsController {
@@ -48,11 +50,11 @@ public class ProductsController {
     }
 
     @PostMapping
-    public ResponseEntity<ProductDTO> createProduct(@RequestBody Product product){
+    public ResponseEntity<ProductDTO> createProduct(@Valid @RequestBody Product product){
         return ResponseEntity.ok(productService.createProduct(product));
     }
     @PutMapping("/{id}")
-    public ResponseEntity<ProductDTO> updateProduct(@PathVariable Long id, @RequestBody UpdateDTO productDTO){
+    public ResponseEntity<ProductDTO> updateProduct(@PathVariable Long id, @Valid @RequestBody UpdateDTO productDTO){
         return ResponseEntity.ok(productService.updateProduct(id, productDTO));
     }
 
