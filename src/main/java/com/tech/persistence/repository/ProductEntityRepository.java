@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.tech.domain.dtos.ProductDTO;
 import com.tech.domain.dtos.UpdateDTO;
-import com.tech.domain.exceptions.ProductNotFoundException;
+import com.tech.domain.exceptions.NotFoundException;
 import com.tech.domain.repository.ProductsRepository;
 import com.tech.persistence.cruds.ProductsCRUD;
 import com.tech.persistence.mappers.ProductMapper;
@@ -26,40 +26,38 @@ public class ProductEntityRepository implements ProductsRepository {
 
     @Override
     public List<ProductDTO> getAllProducts() {
-        List<Product> products = (List<Product>) productsCRUD.findAll();
+        var products = productsCRUD.findAll();
         return productMapper.toDtos(products);  
     }
 
     @Override
     public ProductDTO getProductById(Long id) {
-        Product product = productsCRUD.findById(id).orElseThrow(() -> new ProductNotFoundException());
+        var product = productsCRUD.findById(id).orElseThrow(() -> new NotFoundException("Product not found"));
         return productMapper.toDTO(product);
     }
 
     @Override
     public List<ProductDTO> getProductsByCategory(ProductCategory category) {
-       List<Product> products = productsCRUD.findByCategory(category);
-       return productMapper.toDtos(products);
+       var pfound = productsCRUD.findByCategory(category);
+       return productMapper.toDtos(pfound);
     }
 
     @Override
     public List<ProductDTO> searchProducts(String query) {
-        List<Product> products = productsCRUD.findByNameContainingIgnoreCase(query);
-        if (products.isEmpty()) {
-            throw new ProductNotFoundException();
-        }
-        return productMapper.toDtos(products);
+        var pfound = productsCRUD.findByNameContainingIgnoreCase(query);
+        return productMapper.toDtos(pfound);
     }
 
     @Override
-    public ProductDTO createProduct(Product Product) {
-        Product savedProduct = productsCRUD.save(Product);
+    public ProductDTO createProduct(ProductDTO product) {
+        var product2save= productMapper.toEntity(product);
+        Product savedProduct = productsCRUD.save(product2save);
         return productMapper.toDTO(savedProduct);
     }
 
     @Override
     public ProductDTO updateProduct(long id, UpdateDTO updateDTO) {
-        Product product = productsCRUD.findById(id).orElseThrow(() -> new ProductNotFoundException());
+        Product product = productsCRUD.findById(id).orElseThrow(() -> new NotFoundException("Product not found"));
         productMapper.updateEntityFromDTO(updateDTO, product);
         Product updatedProduct = productsCRUD.save(product);
         return productMapper.toDTO(updatedProduct);
@@ -68,7 +66,7 @@ public class ProductEntityRepository implements ProductsRepository {
     @Override
     public void deleteProduct(long id) {
         if(!productsCRUD.existsById(id)){
-            throw new ProductNotFoundException();
+            throw new NotFoundException("Product not found");
         }
         productsCRUD.deleteById(id);
     }

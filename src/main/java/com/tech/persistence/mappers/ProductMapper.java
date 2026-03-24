@@ -14,7 +14,6 @@ import com.tech.persistence.model.Product;
 public interface ProductMapper {
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "category", expression = "java(ProductCategory.fromString(productDTO.category()))")
     Product toEntity(ProductDTO productDTO);
 
 

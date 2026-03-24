@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 
 import com.tech.domain.dtos.ProductDTO;
 import com.tech.domain.dtos.UpdateDTO;
+import com.tech.domain.exceptions.NotFoundException;
 import com.tech.domain.repository.ProductsRepository;
-import com.tech.persistence.model.Product;
 import com.tech.persistence.model.ProductCategory;
 
 
@@ -20,22 +20,27 @@ public class ProductService {
     }
 
     public List<ProductDTO> getAllProducts() {
-        return productsRepository.getAllProducts();
+        var products = productsRepository.getAllProducts();
+        if (products.isEmpty()) throw new NotFoundException("No contents found");
+        return products ;
     }
 
     public ProductDTO getProductById(Long id) {
         return productsRepository.getProductById(id);
     }
-    public List<ProductDTO> getProductsByCategory(String category) {
-        ProductCategory EnumCategory= ProductCategory.fromString(category);
-        return productsRepository.getProductsByCategory(EnumCategory);
+    public List<ProductDTO> getProductsByCategory(ProductCategory category) {
+        var pfound = productsRepository.getProductsByCategory(category);
+        if (pfound.isEmpty()) throw new NotFoundException("No contents found");
+        return pfound;
     }
 
     public List<ProductDTO> searchProducts(String query) {
-        return productsRepository.searchProducts(query);
+        var pfound= productsRepository.searchProducts(query);
+        if (pfound.isEmpty()) throw new NotFoundException("No contents found");        
+        return pfound;
     }
 
-    public ProductDTO createProduct(Product product){
+    public ProductDTO createProduct(ProductDTO product){
         return productsRepository.createProduct(product);
     }
 

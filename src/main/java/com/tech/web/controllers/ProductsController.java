@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tech.domain.dtos.ProductDTO;
 import com.tech.domain.dtos.UpdateDTO;
 import com.tech.domain.service.ProductService;
-import com.tech.persistence.model.Product;
+import com.tech.persistence.model.ProductCategory;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -60,7 +60,7 @@ public class ProductsController {
         @ApiResponse(responseCode = "400", description = "Invalid category", content = @Content)
     })
     @Parameter(name = "category", description = "The category of the products", example = "smartphones")
-    public ResponseEntity<List<ProductDTO>> getProductsByCategory(@PathVariable String category){
+    public ResponseEntity<List<ProductDTO>> getProductsByCategory(@PathVariable ProductCategory category){
         return ResponseEntity.ok(productService.getProductsByCategory(category));
     }
 
@@ -82,7 +82,7 @@ public class ProductsController {
         @ApiResponse(responseCode = "400", description = "Invalid product data", content = @Content)
     })
     @Parameter(name = "product", description = "The product to create", example = "product")
-    public ResponseEntity<ProductDTO> createProduct(@Valid @RequestBody Product product){
+    public ResponseEntity<ProductDTO> createProduct(@Valid @RequestBody ProductDTO product){
         return ResponseEntity.ok(productService.createProduct(product));
     }
     @PutMapping("/{id}")

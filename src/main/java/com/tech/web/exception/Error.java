@@ -7,6 +7,4 @@ public record Error(
     String type, 
     String message,
     String classEx
-
-) {
-} 
+) {} 

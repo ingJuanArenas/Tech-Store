@@ -6,19 +6,19 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
-import com.tech.domain.exceptions.ProductAlreadyExistsException;
-import com.tech.domain.exceptions.ProductNotFoundException;
+import com.tech.domain.exceptions.AlreadyExistsException;
+import com.tech.domain.exceptions.NotFoundException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
     
-    @ExceptionHandler(ProductNotFoundException.class)
-    public ResponseEntity<Error> handleProductNotFoundException(ProductNotFoundException ex){
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<Error> handleProductNotFoundException(NotFoundException ex){
         return ResponseEntity.status(404).body(new Error("Product Not Found", ex.getMessage(), ex.toString()));
     }
 
-    @ExceptionHandler(ProductAlreadyExistsException.class)
-    public ResponseEntity<Error> handleProductAlreadyExistsException(ProductAlreadyExistsException ex){
+    @ExceptionHandler(AlreadyExistsException.class)
+    public ResponseEntity<Error> handleProductAlreadyExistsException(AlreadyExistsException ex){
         return ResponseEntity.status(409).body(new Error("Product Already Exists", ex.getMessage(), ex.toString()));
     }
 
