@@ -20,7 +20,7 @@ public class ProductService {
     }
 
     public List<ProductDTO> getAllProducts() {
-        return productsRepository.getAllCars();
+        return productsRepository.getAllProducts();
     }
 
     public ProductDTO getProductById(Long id) {

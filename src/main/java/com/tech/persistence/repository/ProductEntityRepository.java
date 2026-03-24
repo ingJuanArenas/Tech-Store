@@ -25,7 +25,7 @@ public class ProductEntityRepository implements ProductsRepository {
     }
 
     @Override
-    public List<ProductDTO> getAllCars() {
+    public List<ProductDTO> getAllProducts() {
         List<Product> products = (List<Product>) productsCRUD.findAll();
         return productMapper.toDtos(products);  
     }

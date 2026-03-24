@@ -8,7 +8,7 @@ import com.tech.persistence.model.Product;
 import com.tech.persistence.model.ProductCategory;
 
 public interface ProductsRepository {
-    List<ProductDTO> getAllCars();
+    List<ProductDTO> getAllProducts();
     ProductDTO getProductById(Long id);
     List<ProductDTO> getProductsByCategory(ProductCategory category);
     List<ProductDTO> searchProducts(String query);
