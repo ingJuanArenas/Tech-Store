@@ -1,11 +1,36 @@
+//generate claims to api (only all get methods)
+
+GET http://localhost:8080/products
+###
+GET http://localhost:8080/products/1
+Accept: application/json
+
+###
+GET http://localhost:8080/products/9
+Accept: application/json
+
+###
+GET http://localhost:8080/products/category/SMARTPHONES
+Accept: application/json
+
+###
+GET http://localhost:8080/products/category/COMPUTERS
+Accept: application/json
+
+//now by search
+###
+GET http://localhost:8080/products/search/asus
+Accept: application/json
+
 ### Crear producto - Laptop
 POST http://localhost:8080/products
 Content-Type: application/json
+Authorization: Basic aG9sYTpob2xh
 
 {
-  "name": "Laptop Gamer Asus ROG Strix",
-  "price": 5299.99,
-  "stock": 10,
+  "name": "EXAMPLE",
+  "price": 523.99,
+  "stock": 4,
   "category": "COMPUTERS",
   "description": "Laptop para gaming con procesador Intel i7, 16GB RAM y tarjeta gráfica NVIDIA RTX 3060",
   "imageUrl": "https://example.com/images/laptop-asus.jpg"
@@ -14,6 +39,7 @@ Content-Type: application/json
 ### 
 POST http://localhost:8080/products
 Content-Type: application/json
+Authorization: Basic YWRtaW46YWRtaW4xMjM=
 
 {
   "name": "Smartphone Samsung Galaxy S21",

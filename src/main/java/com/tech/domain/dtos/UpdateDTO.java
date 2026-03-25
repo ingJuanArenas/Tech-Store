@@ -14,7 +14,8 @@ public record UpdateDTO(
     @NotNull(message = "El stock no puede estar vacio ")
     @Min(value = 1, message = "el valor minimo del stock es 1") 
     int stock,
-    @NotBlank(message = "el precio no puede estar vacia")
+    @NotNull(message = "Precio no puede estar vacio")
+    @Min(value = 1)
     BigDecimal price
 ) {}
  
