@@ -2,6 +2,7 @@ package com.tech.persistence.repository;
 
 import java.util.List;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import com.tech.domain.dtos.CreateUserDTO;
@@ -17,13 +18,13 @@ public class UserRepositoryImpl implements UserRepository {
 
     private final UserEntityCRUD uCrud;
     private final UserMapper userMapper;
+    private final PasswordEncoder passwordEncoder;
 
     
-    
-
-    public UserRepositoryImpl(UserEntityCRUD uCrud, UserMapper userMapper) {
+    public UserRepositoryImpl(UserEntityCRUD uCrud, UserMapper userMapper, PasswordEncoder passwordEncoder) {
         this.uCrud = uCrud;
         this.userMapper = userMapper;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -32,11 +33,11 @@ public class UserRepositoryImpl implements UserRepository {
         return  userMapper.toDTOs(users);
     }
 
-    @Override
-    public List<UserDTO> getByRole(Role role) {
-       var users = uCrud.FindByRoles(role);
+     @Override
+     public List<UserDTO> getByRole(Role role) {
+        var users = uCrud.findByRole(role);
        return userMapper.toDTOs(users);
-    }
+     }
 
     @Override
     public UserDTO getByUsername(String username) {
@@ -47,8 +48,10 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public UserDTO create(CreateUserDTO user) {
         var user2save = userMapper.toEntity(user);
+        user2save.setPassword(passwordEncoder.encode(user2save.getPassword()));
         user2save.setDisabled(false);
         var savedUser= uCrud.save(user2save);
+
         return userMapper.toDto(savedUser);
     }
 

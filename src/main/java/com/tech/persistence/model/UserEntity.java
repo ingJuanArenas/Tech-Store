@@ -31,8 +31,7 @@ public class UserEntity {
     @Column(nullable = false)
     private boolean disabled;
 
-    @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
-    private Set<Role> roles = new HashSet<>();
+    private Role role ;
 
 }

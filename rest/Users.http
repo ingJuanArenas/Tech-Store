@@ -1,16 +1,16 @@
 ### Obtener todos los usuarios
 GET http://localhost:8080/auth
-Authorization: Basic YWRtaW46YWRtaW4xMjM=
+Authorization: Basic aG9sYTpob2xh
 
 
 ### Obtener usuarios por rol (ADMIN)
 GET http://localhost:8080/auth/ADMIN
-Authorization: Basic YWRtaW46YWRtaW4xMjM=
+Authorization: Basic cGVwZTo2NTQzMjE=
 
 
 ### Obtener usuarios por rol (USER)
 GET http://localhost:8080/auth/USER
-Authorization: Basic YWRtaW46YWRtaW4xMjM=
+Authorization: Basic Y3VzdG9tZXI6NjU0MzIx
 
 
 ### Buscar usuario por username
@@ -18,31 +18,19 @@ GET http://localhost:8080/auth/search?username=admin
 Authorization: Basic YWRtaW46YWRtaW4xMjM=
 
 
-### Crear usuario
+### Crear usuario ADMIN
 POST http://localhost:8080/auth
 Content-Type: application/json
-Authorization: Basic YWRtaW46YWRtaW4xMjM=
+Authorization: Basic aG9sYTpob2xh
 
 {
-  "username": "manuel",
-  "password": "123456",
-  "roles": ["USER"]
-}
-
-
-### Crear usuario ADMIN
-POST http://localhost:8080/auth/create
-Content-Type: application/json
-Authorization: Basic user:password
-
-{
-  "username": "admin",
-  "password": "123456",
+  "username": "customer",
+  "password": "654321",
   "disabled": false,
-  "roles": ["ADMIN"]
+  "role": "USER"
 }
 
 
 ### Eliminar usuario
 DELETE http://localhost:8080/auth/manuel
-Authorization: Basic YWRtaW46YWRtaW4xMjM=
+Authorization: Basic admin:admin123
