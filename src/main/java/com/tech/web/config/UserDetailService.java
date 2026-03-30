@@ -27,7 +27,6 @@ public class UserDetailService implements UserDetailsService {
                                         .orElseThrow(()-> new UsernameNotFoundException("Username not found"));
         String[] roles = List.of(userFound.getRole().name()).toArray(new String[0]);
 
-        System.out.println(userFound.getPassword());
         return User.builder()
                     .username(userFound.getUsername())
                     .password(userFound.getPassword())
