@@ -1,5 +1,7 @@
 package com.tech.web.config;
 
+import java.util.List;
+
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -23,7 +25,9 @@ public class UserDetailService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         var userFound= userEntityCRUD.findById(username)
                                         .orElseThrow(()-> new UsernameNotFoundException("Username not found"));
-        String[] roles = userFound.getRoles().stream().toArray(String[]::new);
+        String[] roles = List.of(userFound.getRole().name()).toArray(new String[0]);
+
+        System.out.println(userFound.getPassword());
         return User.builder()
                     .username(userFound.getUsername())
                     .password(userFound.getPassword())
