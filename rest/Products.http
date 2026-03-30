@@ -3,29 +3,23 @@
 GET http://localhost:8080/products
 ###
 GET http://localhost:8080/products/1
-Accept: application/json
 
 ###
 GET http://localhost:8080/products/9
-Accept: application/json
 
 ###
 GET http://localhost:8080/products/category/SMARTPHONES
-Accept: application/json
-
 ###
 GET http://localhost:8080/products/category/COMPUTERS
-Accept: application/json
 
 //now by search
 ###
 GET http://localhost:8080/products/search/asus
-Accept: application/json
 
 ### Crear producto - Laptop
 POST http://localhost:8080/products
 Content-Type: application/json
-Authorization: Basic aG9sYTpob2xh
+Authorization: Basic Y3VzdG9tZXI6NjU0MzIx
 
 {
   "name": "EXAMPLE",
@@ -39,7 +33,7 @@ Authorization: Basic aG9sYTpob2xh
 ### 
 POST http://localhost:8080/products
 Content-Type: application/json
-Authorization: Basic YWRtaW46YWRtaW4xMjM=
+Authorization: Basic cGVwZTo2NTQzMjE=
 
 {
   "name": "Smartphone Samsung Galaxy S21",
@@ -55,6 +49,7 @@ Authorization: Basic YWRtaW46YWRtaW4xMjM=
 ###
 PUT http://localhost:8080/products/1
 Content-Type: application/json
+Authorization: Basic cGVwZTo2NTQzMjE=
 
 {
   "price": 4799.99,
@@ -65,3 +60,5 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:8080/products/2
+Authorization: Basic YWRtaW46MTIzNDU2
+
